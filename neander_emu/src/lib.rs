@@ -14,6 +14,7 @@ struct Parser {
 enum ParserError {
     InvalidOpCode(u8),
     MissingOperand(u8),
+    UnexpectedEndOfFile,
 }
 
 impl std::fmt::Display for ParserError {
@@ -23,6 +24,8 @@ impl std::fmt::Display for ParserError {
                 write!(f, "Invalid Operation Code: {}", opcode),
             ParserError::MissingOperand(opcode) =>
                 write!(f, "Invalid Operand for Operation Code: {}", opcode),
+            ParserError::UnexpectedEndOfFile =>
+                write!(f, "Unexpected End Of File"),
         }
     }
 }
@@ -46,7 +49,11 @@ impl Parser {
         }
     }
     fn byte_to_opcode(&mut self) -> Result<OpCode, ParserError> {
-        let byte = self.next().unwrap();
+        let byte = match self.next() {
+            Some(byte) => byte,
+            None => return Err(ParserError::UnexpectedEndOfFile),
+        };
+
         let opcode = byte & 0xf0;
 
         match opcode {

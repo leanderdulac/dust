@@ -61,3 +61,16 @@ fn byte_to_opcode_when_missing_operand() {
         _ => panic!("should not match an operand"),
     };
 }
+
+#[test]
+fn byte_to_opcode_when_reading_empty_file() {
+    let file = File::open("binary_files/empty.dat").unwrap();
+    let mut parser = Parser::new(file);
+
+    let result = parser.byte_to_opcode();
+
+    match result {
+        Err(ParserError::UnexpectedEndOfFile) => (),
+        _ => panic!("should return UnexpectedEndOfFile error"),
+    };
+}
