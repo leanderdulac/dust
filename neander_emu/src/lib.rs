@@ -1,4 +1,5 @@
 mod instruction_set;
+mod interpreter;
 
 use std::io::Bytes;
 use std::io::prelude::*;
