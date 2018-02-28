@@ -1,4 +1,5 @@
-use super::*;
+use std::fs::File;
+use super::super::*;
 
 #[test]
 fn test_next() {
@@ -74,3 +75,4 @@ fn byte_to_opcode_when_reading_empty_file() {
         _ => panic!("should return UnexpectedEndOfFile error"),
     };
 }
+
