@@ -12,3 +12,7 @@ pub fn lda(accumulator: &mut u8, address: &u8) {
 pub fn add(accumulator: &mut u8, address: &u8) {
     *accumulator += *address;
 }
+
+pub fn or(accumulator: &mut u8, address: &u8) {
+    *accumulator = *accumulator | *address;
+}
