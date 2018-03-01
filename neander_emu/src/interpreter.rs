@@ -8,3 +8,7 @@ pub fn sta(address: &mut u8, accumulator: u8) {
 pub fn lda(accumulator: &mut u8, address: &u8) {
     *accumulator = *address;
 }
+
+pub fn add(accumulator: &mut u8, address: &u8) {
+    *accumulator += *address;
+}

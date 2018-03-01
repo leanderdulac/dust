@@ -24,3 +24,13 @@ fn test_lda() {
 
     assert_eq!(accumulator, 0x10);
 }
+
+#[test]
+fn test_add() {
+    let value: u8 = 0x10;
+    let mut accumulator: u8 = 0x20;
+
+    add(&mut accumulator, &value);
+
+    assert_eq!(accumulator, 0x30);
+}
