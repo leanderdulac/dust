@@ -14,3 +14,13 @@ fn test_sta() {
 
     assert_eq!(value, 0xa0);
 }
+
+#[test]
+fn test_lda() {
+    let value: u8 = 0x10;
+    let mut accumulator: u8 = 0x00;
+
+    lda(&mut accumulator, &value);
+
+    assert_eq!(accumulator, 0x10);
+}
