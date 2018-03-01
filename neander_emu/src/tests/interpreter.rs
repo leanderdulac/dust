@@ -54,3 +54,12 @@ fn test_and() {
 
     assert_eq!(accumulator, 0x00);
 }
+
+#[test]
+fn test_not() {
+    let mut accumulator: u8 = 0x55;
+
+    not(&mut accumulator);
+
+    assert_eq!(accumulator, 0xaa);
+}

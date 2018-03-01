@@ -20,3 +20,7 @@ pub fn or(accumulator: &mut u8, address: &u8) {
 pub fn and(accumulator: &mut u8, address: &u8) {
     *accumulator = *accumulator & *address;
 }
+
+pub fn not(accumulator: &mut u8) {
+    *accumulator = !*accumulator;
+}
