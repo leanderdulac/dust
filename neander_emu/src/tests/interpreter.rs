@@ -66,6 +66,16 @@ fn test_not() {
 }
 
 #[test]
+fn test_jmp() {
+    let value: u8 = 0x05;
+    let mut program_counter: u8 = 0x03;
+
+    jmp(&mut program_counter, &value);
+
+    assert_eq!(program_counter, 0x05);
+}
+
+#[test]
 #[ignore]
 fn test_hlt() {
     hlt();

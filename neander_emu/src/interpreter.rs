@@ -27,6 +27,10 @@ pub fn not(accumulator: &mut u8) {
     *accumulator = !*accumulator;
 }
 
+pub fn jmp(program_counter: &mut u8, address: &u8) {
+    *program_counter = *address;
+}
+
 pub fn hlt() {
     process::exit(0);
 }
