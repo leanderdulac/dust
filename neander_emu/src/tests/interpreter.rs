@@ -1,4 +1,5 @@
 use super::super::interpreter::*;
+use std::process::Command;
 
 #[test]
 fn test_nop() {
@@ -62,4 +63,20 @@ fn test_not() {
     not(&mut accumulator);
 
     assert_eq!(accumulator, 0xaa);
+}
+
+#[test]
+#[ignore]
+fn test_hlt() {
+    hlt();
+}
+
+#[test]
+fn spawn_process_to_test_hlt() {
+    let status = Command::new("/proc/self/exe")
+        .args(&["--ignored", "real"])
+        .status()
+        .expect("Unable to run program");
+
+    assert_eq!(Some(0), status.code());
 }

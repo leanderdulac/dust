@@ -1,3 +1,5 @@
+use std::process;
+
 pub fn nop() {
 }
 
@@ -23,4 +25,8 @@ pub fn and(accumulator: &mut u8, address: &u8) {
 
 pub fn not(accumulator: &mut u8) {
     *accumulator = !*accumulator;
+}
+
+pub fn hlt() {
+    process::exit(0);
 }
