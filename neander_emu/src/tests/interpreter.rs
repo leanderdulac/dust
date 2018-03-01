@@ -44,3 +44,13 @@ fn test_or() {
 
     assert_eq!(accumulator, 0xff);
 }
+
+#[test]
+fn test_and() {
+    let value: u8 = 0xf0;
+    let mut accumulator: u8 = 0x0f;
+
+    and(&mut accumulator, &value);
+
+    assert_eq!(accumulator, 0x00);
+}
