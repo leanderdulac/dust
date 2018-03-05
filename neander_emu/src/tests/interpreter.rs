@@ -70,7 +70,51 @@ fn test_jmp() {
     let value: u8 = 0x05;
     let mut program_counter: u8 = 0x03;
 
-    jmp(&mut program_counter, &value);
+    jmp(&mut program_counter, value);
+
+    assert_eq!(program_counter, 0x05);
+}
+
+#[test]
+fn test_jn_if_one() {
+    let mut program_counter: u8 = 0x05;
+    let accumulator: u8 = 0x01;
+    let literal: u8 = 0x0a;
+
+    jn(&mut program_counter, accumulator, literal);
+
+    assert_eq!(program_counter, 0x0a);
+}
+
+#[test]
+fn test_jn_if_not_one() {
+    let mut program_counter: u8 = 0x05;
+    let accumulator: u8 = 0x00;
+    let literal: u8 = 0x0a;
+
+    jn(&mut program_counter, accumulator, literal);
+
+    assert_eq!(program_counter, 0x05);
+}
+
+#[test]
+fn test_jz_if_zero() {
+    let mut program_counter: u8 = 0x05;
+    let accumulator: u8 = 0x00;
+    let literal: u8 = 0x0a;
+
+    jz(&mut program_counter, accumulator, literal);
+
+    assert_eq!(program_counter, 0x0a);
+}
+
+#[test]
+fn test_jz_if_not_zero() {
+    let mut program_counter: u8 = 0x05;
+    let accumulator: u8 = 0x06;
+    let literal: u8 = 0x0a;
+
+    jz(&mut program_counter, accumulator, literal);
 
     assert_eq!(program_counter, 0x05);
 }

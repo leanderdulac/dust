@@ -27,8 +27,20 @@ pub fn not(accumulator: &mut u8) {
     *accumulator = !*accumulator;
 }
 
-pub fn jmp(program_counter: &mut u8, address: &u8) {
-    *program_counter = *address;
+pub fn jmp(program_counter: &mut u8, literal: u8) {
+    *program_counter = literal;
+}
+
+pub fn jn(program_counter: &mut u8, accumulator: u8, literal: u8) {
+    if accumulator == 0x01 {
+        *program_counter = literal;
+    }
+}
+
+pub fn jz(program_counter: &mut u8, accumulator: u8, literal: u8) {
+    if accumulator == 0x00 {
+        *program_counter = literal;
+    }
 }
 
 pub fn hlt() {
