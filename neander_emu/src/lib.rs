@@ -1,18 +1,19 @@
-mod instruction_set;
-mod interpreter;
+pub mod instruction_set;
+pub mod interpreter;
 
 use std::io::Bytes;
 use std::io::prelude::*;
 use std::fs::File;
 use instruction_set::OpCode;
 
-struct Parser {
+#[derive(Debug)]
+pub struct Parser {
     offset: u8,
     bytes: Bytes<File>,
 }
 
 #[derive(Debug, Clone)]
-enum ParserError {
+pub enum ParserError {
     InvalidOpCode(u8),
     MissingOperand(u8),
     UnexpectedEndOfFile,
@@ -41,7 +42,7 @@ impl std::error::Error for ParserError {
 }
 
 impl Parser {
-    fn new(file: File) -> Parser {
+    pub fn new(file: File) -> Parser {
         let bytes = file.bytes();
 
         Parser {
@@ -49,12 +50,7 @@ impl Parser {
             bytes,
         }
     }
-    fn byte_to_opcode(&mut self) -> Result<OpCode, ParserError> {
-        let byte = match self.next() {
-            Some(byte) => byte,
-            None => return Err(ParserError::UnexpectedEndOfFile),
-        };
-
+    pub fn byte_to_opcode(&mut self, byte: u8) -> Result<OpCode, ParserError> {
         let opcode = byte & 0xf0;
 
         match opcode {
